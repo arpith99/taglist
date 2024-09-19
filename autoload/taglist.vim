@@ -1740,7 +1740,7 @@ function! s:Tlist_Process_File(filename, ftype) abort
   let finfo.valid = v:true
 
   " Universal ctags arguments to generate a tag list
-  let ctags_args = ' -f - --format=2 --excmd=pattern --fields=nks '
+  let ctags_args = ' -f - --format=2 --excmd=pattern --fields=nks "-I FUNC+ -I VAR+ -I P2VAR+ -I CONST+ -I P2CONST+ -I P2FUNC+"'
 
   " Form the ctags argument depending on the sort type
   if finfo.sort_type ==# 'name'
