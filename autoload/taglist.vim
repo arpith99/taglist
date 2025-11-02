@@ -1740,7 +1740,11 @@ function! s:Tlist_Process_File(filename, ftype) abort
   let finfo.valid = v:true
 
   " Universal ctags arguments to generate a tag list
-  let ctags_args = ' -f - --format=2 --excmd=pattern --fields=nks "-I FUNC+ -I VAR+ -I P2VAR+ -I CONST+ -I P2CONST+ -I P2FUNC+"'
+  let ctags_args = ' -f - --format=2 --excmd=pattern --fields=nks "-I FUNC+ -I VAR+ -I P2VAR+ -I CONST+ -I P2CONST+ -I P2FUNC+ -I ISR+ -I TASK+"'
+
+  " Add AUTOSAR TASK and ISR regex patterns
+  let ctags_args .= " --regex-c='/^TASK\\(([^)]+)\\)/\\1/f/'"
+  let ctags_args .= " --regex-c='/^ISR\\(([^)]+)\\)/\\1/f/'"
 
   " Form the ctags argument depending on the sort type
   if finfo.sort_type ==# 'name'
